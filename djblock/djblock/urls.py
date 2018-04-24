@@ -15,10 +15,23 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from pages.views import HomePageView
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
+    # This Urls should be present in top
+    url(r'^$', HomePageView.as_view(), name='homepage'),
+    url(r'^api/polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
+    # Important: you should add urls only on top not below this
+    url(r'^(?P<path>.*)$', HomePageView.as_view(), name='homepage_redirect'),
 ]
+
+if settings.DEBUG:  # Serve media files
+    urlpatterns.insert(
+        -1, 
+        static(settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT)[0]
+    )
