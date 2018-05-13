@@ -13,3 +13,9 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['DEBUG'] = settings.DEBUG
         return context
+
+def user_login(request):
+    context = {
+        'data': 'my-data'
+    }
+    return render(request,'login.html', context=context)
