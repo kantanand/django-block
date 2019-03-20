@@ -54,6 +54,7 @@ LOCAL_APPS = [
     'polls.apps.PollsConfig',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
+    'community.apps.CommunityConfig',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS + LOCAL_APPS
